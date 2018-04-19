@@ -1,0 +1,10 @@
+.DS_Store
+*/xcuserdatad/
+*/xcuserdata/*
+#*.xcworkspace/
+*xcuserdata/
+Pods/
+build/
+docs/
+*.orig
+*~HEAD
