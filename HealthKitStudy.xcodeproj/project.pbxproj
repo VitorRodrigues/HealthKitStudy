@@ -12,6 +12,7 @@
 		91740F3F208FA11700A3D24A /* SleepingAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91740F3E208FA11700A3D24A /* SleepingAnalysisViewController.swift */; };
 		91740F43208FB34300A3D24A /* DayAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91740F42208FB34300A3D24A /* DayAxisValueFormatter.swift */; };
 		91740F45208FC2F600A3D24A /* SleepingAnalysisChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91740F44208FC2F600A3D24A /* SleepingAnalysisChartViewController.swift */; };
+		91740F47208FCC6A00A3D24A /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91740F46208FCC6A00A3D24A /* ActivityViewController.swift */; };
 		91C80C3920893F2D00013140 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C80C3820893F2D00013140 /* AppDelegate.swift */; };
 		91C80C3B20893F2D00013140 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C80C3A20893F2D00013140 /* MasterViewController.swift */; };
 		91C80C3D20893F2D00013140 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C80C3C20893F2D00013140 /* DetailViewController.swift */; };
@@ -28,6 +29,7 @@
 		91740F3E208FA11700A3D24A /* SleepingAnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepingAnalysisViewController.swift; sourceTree = "<group>"; };
 		91740F42208FB34300A3D24A /* DayAxisValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayAxisValueFormatter.swift; sourceTree = "<group>"; };
 		91740F44208FC2F600A3D24A /* SleepingAnalysisChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepingAnalysisChartViewController.swift; sourceTree = "<group>"; };
+		91740F46208FCC6A00A3D24A /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		91C80C3520893F2D00013140 /* HealthKitStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthKitStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91C80C3820893F2D00013140 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91C80C3A20893F2D00013140 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				91C80C3A20893F2D00013140 /* MasterViewController.swift */,
 				91C80C3C20893F2D00013140 /* DetailViewController.swift */,
 				91740F3E208FA11700A3D24A /* SleepingAnalysisViewController.swift */,
+				91740F46208FCC6A00A3D24A /* ActivityViewController.swift */,
 				91740F44208FC2F600A3D24A /* SleepingAnalysisChartViewController.swift */,
 				91C80C3E20893F2D00013140 /* Main.storyboard */,
 				91C80C4120893F2F00013140 /* Assets.xcassets */,
@@ -231,6 +234,7 @@
 				91740F43208FB34300A3D24A /* DayAxisValueFormatter.swift in Sources */,
 				91740F3F208FA11700A3D24A /* SleepingAnalysisViewController.swift in Sources */,
 				91C80C3B20893F2D00013140 /* MasterViewController.swift in Sources */,
+				91740F47208FCC6A00A3D24A /* ActivityViewController.swift in Sources */,
 				91740F45208FC2F600A3D24A /* SleepingAnalysisChartViewController.swift in Sources */,
 				91C80C3920893F2D00013140 /* AppDelegate.swift in Sources */,
 			);
