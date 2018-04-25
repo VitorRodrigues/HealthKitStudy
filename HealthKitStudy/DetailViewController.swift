@@ -37,7 +37,9 @@ class ProfileViewController: UIViewController {
         
         healthStore.requestAuthorization(toShare: nil, read: readTypes) { (granted, error) in
             guard granted else { return }
-            self.readStoreData()
+            DispatchQueue.main.async {
+                self.readStoreData()
+            }
         }
         
     }
@@ -105,16 +107,25 @@ class ProfileViewController: UIViewController {
                 }
                 
                 if let lastHeight = samples.first as? HKQuantitySample {
-                    let cmUnit = HKUnit.init(from: LengthFormatter.Unit.centimeter)
-                    let height = lastHeight.quantity.doubleValue(for: cmUnit)
                     let heightFormatter = NumberFormatter()
                     heightFormatter.numberStyle = .decimal
                     heightFormatter.maximumFractionDigits = 2
                     heightFormatter.minimumFractionDigits = 2
-                    heightFormatter.positiveSuffix = "m"
-                    self.heightLabel.text = heightFormatter.string(from: NSNumber(value: height))
+                    
+                    let meterUnit = HKUnit.init(from: LengthFormatter.Unit.meter)
+                    let lengthFormatter = LengthFormatter()
+                    lengthFormatter.unitStyle = .short
+                    lengthFormatter.numberFormatter = heightFormatter
+                    
+                    
+                    let height = lastHeight.quantity.doubleValue(for: meterUnit)
+                    DispatchQueue.main.async {
+                        self.heightLabel.text = lengthFormatter.string(fromValue: height, unit: LengthFormatter.Unit.meter)
+                    }
                 } else {
-                    self.heightLabel.text = "Sem altura"
+                    DispatchQueue.main.async {
+                        self.heightLabel.text = "Sem altura"
+                    }
                 }
             }
             
@@ -129,7 +140,9 @@ class ProfileViewController: UIViewController {
             
             let query = HKSampleQuery(sampleType: weightSample, predicate: nil, limit: 1, sortDescriptors: [lastTimeSort]) { (query, samples, error) in
                 guard let samples = samples else {
-                    self.weightLabel.text = "N/A"
+                    DispatchQueue.main.async {
+                        self.weightLabel.text = "N/A"
+                    }
                     return
                 }
                 
@@ -140,9 +153,13 @@ class ProfileViewController: UIViewController {
                     weightFormatter.numberStyle = .decimal
                     weightFormatter.maximumFractionDigits = 1
                     weightFormatter.positiveSuffix = "kg"
-                    self.weightLabel.text = weightFormatter.string(from: NSNumber(value: height))
+                    DispatchQueue.main.async {
+                        self.weightLabel.text = weightFormatter.string(from: NSNumber(value: height))
+                    }
                 } else {
-                    self.weightLabel.text = "Sem altura"
+                    DispatchQueue.main.async {
+                        self.weightLabel.text = "Sem altura"
+                    }
                 }
             }
             
