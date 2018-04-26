@@ -10,8 +10,7 @@ import UIKit
 import HealthKit
 
 
-class SleepingAnalysisViewController: UIViewController {
-    let healthStore = HKHealthStore()
+class SleepingAnalysisViewController: HealthKitBaseViewController {
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
     
@@ -33,33 +32,10 @@ class SleepingAnalysisViewController: UIViewController {
         timeFormatter.dateFormat = "HH'h' mm'm'"
         dateFormatter.dateFormat = "dd/MM"
         let readTypes: Set<HKObjectType> = [ sleepingCategoryType ]
-        
-        healthStore.requestAuthorization(toShare: nil, read: readTypes) { (granted, error) in
-            guard granted else {
-                self.showWarningLabel(text:"We're not authorized to see HealthKit data")
-                return
-            }
-            self.showWarningLabel(text:"Loading data...")
-            self.readStoreData()
-        }
-        
+        prepareReading(types: readTypes)
     }
     
-    private func showWarningLabel(text: String?) {
-        DispatchQueue.main.async {
-            self.view.viewWithTag(999)?.removeFromSuperview()
-            guard let text = text else { return }
-            let label = UILabel()
-            label.tag = 999
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = text
-            self.view.addSubview(label)
-            label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-            label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        }
-    }
-    
-    func readStoreData() {
+    override func readStoreData() {
         
         // GET LASTEST ANALYSIS
         do {

@@ -10,9 +10,8 @@ import UIKit
 import HealthKit
 import Charts
 
-class SleepingAnalysisChartViewController: UIViewController {
+class SleepingAnalysisChartViewController: HealthKitBaseViewController {
     
-    let healthStore = HKHealthStore()
     let dateFormatter = DateFormatter()
     
     let sleepingCategoryType = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
@@ -55,7 +54,7 @@ class SleepingAnalysisChartViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func readStoreData() {
+    override func readStoreData() {
         
         // GET LASTEST ANALYSIS
         do {

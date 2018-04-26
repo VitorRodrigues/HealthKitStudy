@@ -9,11 +9,10 @@
 import UIKit
 import HealthKit
 
-class ActivityViewController: UIViewController {
+class ActivityViewController: HealthKitBaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let healthStore = HKHealthStore()
     var anchor: HKQueryAnchor? {
         get {
             guard let data = UserDefaults.standard.object(forKey: "anchorHealthKit") as? Data else { return nil }
@@ -47,10 +46,7 @@ class ActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard HKHealthStore.isHealthDataAvailable() else {
-            showWarningLabel(text:"Health Kit unavailable")
-            return
-        }
+       
         dateFormatter.dateFormat = "dd/MM/yyyy"
         var readTypes: Set<HKObjectType> = [
             distanceWalkingSample,
@@ -63,34 +59,11 @@ class ActivityViewController: UIViewController {
             readTypes.insert(HKSampleType.activitySummaryType())
         }
         
-        healthStore.requestAuthorization(toShare: nil, read: readTypes) { (granted, error) in
-            guard granted else {
-                self.showWarningLabel(text:"We're not authorized to see HealthKit data")
-                return
-            }
-            self.showWarningLabel(text:"Loading data...")
-            self.readStoreData()
-        }
-        
         tableView.dataSource = self
+        prepareReading(types: readTypes)
     }
     
-    private func showWarningLabel(text: String?) {
-        DispatchQueue.main.async {
-            self.view.viewWithTag(999)?.removeFromSuperview()
-            guard let text = text else { return }
-            let label = UILabel()
-            label.tag = 999
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = text
-            self.view.addSubview(label)
-            label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-            label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        }
-    }
-    
-    
-    func readStoreData() {
+    override func readStoreData() {
         do {
             
             let query = HKSampleQuery(sampleType: stepCountSample, predicate: nil, limit: 0, sortDescriptors: nil) { (query, samples, error) in

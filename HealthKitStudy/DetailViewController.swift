@@ -9,7 +9,7 @@
 import UIKit
 import HealthKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: HealthKitBaseViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
@@ -19,9 +19,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
-    
-    
-    let healthStore = HKHealthStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,21 +32,10 @@ class ProfileViewController: UIViewController {
             HKObjectType.quantityType(forIdentifier: .bodyMass)!
         ]
         
-        healthStore.requestAuthorization(toShare: nil, read: readTypes) { (granted, error) in
-            guard granted else { return }
-            DispatchQueue.main.async {
-                self.readStoreData()
-            }
-        }
-        
+        prepareReading(types: readTypes)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func readStoreData() {
+    
+    override func readStoreData() {
         do {
             let sex = try healthStore.biologicalSex()
             switch sex.biologicalSex {

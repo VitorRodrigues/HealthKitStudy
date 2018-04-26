@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		02B69B4A30F59A8E827E8145 /* Pods_HealthKitStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 414E4329D3F3FA7261454F50 /* Pods_HealthKitStudy.framework */; };
+		915C9DB7209267FB00A9B5DD /* WorkoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915C9DB6209267FB00A9B5DD /* WorkoutsViewController.swift */; };
+		915C9DB92092681500A9B5DD /* HealthKitBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915C9DB82092681500A9B5DD /* HealthKitBaseViewController.swift */; };
 		91740F3D208FA0E200A3D24A /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 91740F3C208FA0E200A3D24A /* Podfile */; };
 		91740F3F208FA11700A3D24A /* SleepingAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91740F3E208FA11700A3D24A /* SleepingAnalysisViewController.swift */; };
 		91740F43208FB34300A3D24A /* DayAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91740F42208FB34300A3D24A /* DayAxisValueFormatter.swift */; };
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		39B93C2D0E3D63FD4CF0D662 /* Pods-HealthKitStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HealthKitStudy.release.xcconfig"; path = "Pods/Target Support Files/Pods-HealthKitStudy/Pods-HealthKitStudy.release.xcconfig"; sourceTree = "<group>"; };
 		414E4329D3F3FA7261454F50 /* Pods_HealthKitStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HealthKitStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		915C9DB6209267FB00A9B5DD /* WorkoutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsViewController.swift; sourceTree = "<group>"; };
+		915C9DB82092681500A9B5DD /* HealthKitBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitBaseViewController.swift; sourceTree = "<group>"; };
 		91740F3C208FA0E200A3D24A /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		91740F3E208FA11700A3D24A /* SleepingAnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepingAnalysisViewController.swift; sourceTree = "<group>"; };
 		91740F42208FB34300A3D24A /* DayAxisValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayAxisValueFormatter.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				91740F3E208FA11700A3D24A /* SleepingAnalysisViewController.swift */,
 				91740F46208FCC6A00A3D24A /* ActivityViewController.swift */,
 				91740F44208FC2F600A3D24A /* SleepingAnalysisChartViewController.swift */,
+				915C9DB6209267FB00A9B5DD /* WorkoutsViewController.swift */,
+				915C9DB82092681500A9B5DD /* HealthKitBaseViewController.swift */,
 				91C80C3E20893F2D00013140 /* Main.storyboard */,
 				91C80C4120893F2F00013140 /* Assets.xcassets */,
 				91C80C4320893F2F00013140 /* LaunchScreen.storyboard */,
@@ -230,10 +236,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				915C9DB92092681500A9B5DD /* HealthKitBaseViewController.swift in Sources */,
 				91C80C3D20893F2D00013140 /* DetailViewController.swift in Sources */,
 				91740F43208FB34300A3D24A /* DayAxisValueFormatter.swift in Sources */,
 				91740F3F208FA11700A3D24A /* SleepingAnalysisViewController.swift in Sources */,
 				91C80C3B20893F2D00013140 /* MasterViewController.swift in Sources */,
+				915C9DB7209267FB00A9B5DD /* WorkoutsViewController.swift in Sources */,
 				91740F47208FCC6A00A3D24A /* ActivityViewController.swift in Sources */,
 				91740F45208FC2F600A3D24A /* SleepingAnalysisChartViewController.swift in Sources */,
 				91C80C3920893F2D00013140 /* AppDelegate.swift in Sources */,
