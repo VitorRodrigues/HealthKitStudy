@@ -27,7 +27,7 @@ class WorkoutsViewController: HealthKitBaseViewController, UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm"
         numberFormatter.maximumFractionDigits = 2
         prepareReading(types: [workoutType])
         tableView.dataSource = self
@@ -59,12 +59,28 @@ class WorkoutsViewController: HealthKitBaseViewController, UITableViewDataSource
         let measure = EnergyFormatter()
         measure.numberFormatter = numberFormatter
         let kcalBurned = measure.string(fromValue: cellData.totalEnergyBurned!.doubleValue(for: HKUnit.kilocalorie()), unit: EnergyFormatter.Unit.kilocalorie)
+        var workoutIcon: String
+        switch cellData.workoutActivityType {
+        case .archery:
+            workoutIcon = "🏹"
+        case .running, .walking:
+            workoutIcon = "🏃‍♂️"
+        default:
+            workoutIcon = "🏋️‍♂️"
+        }
         
-        let time = 
-        
-        cell.textLabel?.text = "Dur: \(cellData.duration) | \(kcalBurned)"
-        cell.detailTextLabel?.text = "\(cellData.startDate)-\(cellData.endDate)"
+        cell.textLabel?.text = "⏱: \(format(duration: cellData.duration)) | \(kcalBurned) burned 🔥... \(workoutIcon)(\(cellData.workoutActivityType.rawValue))"
+        cell.detailTextLabel?.text = "\(dateFormatter.string(from: cellData.startDate))-\(dateFormatter.string(from: cellData.endDate))"
         return cell
     }
     
+    func format(duration: TimeInterval) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day, .hour, .minute, .second]
+        formatter.unitsStyle = .short
+        
+//        formatter.maximumUnitCount = 2
+        
+        return formatter.string(from: duration)!
+    }
 }

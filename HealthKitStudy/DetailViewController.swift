@@ -82,6 +82,7 @@ class ProfileViewController: HealthKitBaseViewController {
         // GET LASTEST HEIGHT
         do {
             let heightSample = HKObjectType.quantityType(forIdentifier: .height)!
+            
 //            HKObjectType.quantityType(forIdentifier: .bodyMass)!
             
             let lastTimeSort = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,  ascending: false)
