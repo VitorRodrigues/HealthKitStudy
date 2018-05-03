@@ -31,8 +31,11 @@ class CommonHealthData: NSObject, JSONSerializable {
     func toJSON() -> [String : Any] {
         var json = [String: Any]()
         
-        json["startDate"] = startDate
-        json["endDate"] = endDate
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.sssZ"
+        
+        json["startDate"] = formatter.string(from: startDate)
+        json["endDate"] = formatter.string(from: endDate)
         
         return json
     }
@@ -51,7 +54,7 @@ class CategoryHealthData: CommonHealthData {
     
     override func toJSON() -> [String : Any] {
         var json = super.toJSON()
-        json["value"] = value
+        json["value"] = "\(value)"        
         if let category = category {
             json["category"] = category
         }
@@ -120,9 +123,9 @@ class WorkoutHealthData: CommonHealthData {
             var jsonEvents = [[String: Any]]()
             for event in events {
                 var json = [String: Any]()
-                json["end"] = event.end
+//                json["end"] = event.end
                 json["interval"] = event.interval
-                json["start"] = event.start
+//                json["start"] = event.start
                 jsonEvents.append(json)
             }
         }

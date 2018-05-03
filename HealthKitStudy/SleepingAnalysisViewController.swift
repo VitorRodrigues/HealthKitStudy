@@ -75,6 +75,40 @@ class SleepingAnalysisViewController: HealthKitBaseViewController {
             self.tableView.reloadData()
         }
     }
+    
+    override func exportData() {
+        guard let data = allData else { return }
+        let file = "sleeping.json"
+        var dir: URL
+        if #available(iOS 10.0, *) {
+            dir = FileManager.default.temporaryDirectory
+        } else {
+            // Fallback on earlier versions
+            dir = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+        }
+        let fileURL = dir.appendingPathComponent(file)
+        if FileManager().fileExists(atPath: fileURL.absoluteString) {
+            let ac = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+            present(ac, animated: true, completion: nil)
+            return
+        }
+        
+        let converter = HealthConverter()
+        let datas = data.compactMap { converter.convert(category: $0) }
+        let json = datas.compactMap{ $0.toJSON() }
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
+            
+            //writing
+            try jsonData.write(to: fileURL, options: .atomicWrite)
+            
+            let ac = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+            present(ac, animated: true, completion: nil)
+            
+        } catch (let error) {
+            print("Error: \(error.localizedDescription)")
+        }
+    }
 }
 
 extension SleepingAnalysisViewController: UITableViewDataSource {

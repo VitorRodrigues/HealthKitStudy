@@ -20,7 +20,8 @@ class HealthKitBaseViewController: UIViewController {
         }
         // Do any additional setup after loading the view.
         
-        
+        let exportButton = UIBarButtonItem(title: "Export", style: .plain, target: self, action: #selector(exportData))
+        self.navigationItem.rightBarButtonItem = exportButton
     }
 
     internal func prepareReading(types: Set<HKObjectType>) {
@@ -53,4 +54,7 @@ class HealthKitBaseViewController: UIViewController {
     func readStoreData() {
     }
 
+    @objc func exportData() {
+        print("There's no implementation for data export")
+    }
 }
