@@ -33,6 +33,7 @@ class ActivityViewController: HealthKitBaseViewController {
     let stepCountSample = HKSampleType.quantityType(forIdentifier: .stepCount)!
     let activityBurnedSamples = HKSampleType.quantityType(forIdentifier: .activeEnergyBurned)!
     let dateFormatter = DateFormatter()
+    var healthData: [CommonHealthData] = []
     var data: [(String, String)] = [] {
         didSet {
             if data.isEmpty == false {
@@ -64,6 +65,8 @@ class ActivityViewController: HealthKitBaseViewController {
     }
     
     override func readStoreData() {
+        
+        let converter = HealthConverter()
         do {
             
             let query = HKSampleQuery(sampleType: stepCountSample, predicate: nil, limit: 0, sortDescriptors: nil) { (query, samples, error) in
@@ -83,6 +86,9 @@ class ActivityViewController: HealthKitBaseViewController {
                 let detail = "\(self.dateFormatter.string(from: minDate)) - \(self.dateFormatter.string(from: maxDate))"
                 
                 self.data.append((title, detail))
+                
+                let steps = samples.compactMap { converter.convert(quantity: $0, unit: HKUnit.count()) }
+                self.healthData.append(contentsOf: steps)
             }
             
             
@@ -114,6 +120,9 @@ class ActivityViewController: HealthKitBaseViewController {
                 let detail = "up to \(self.dateFormatter.string(from: maxDate))"
                 
                 self.data.append((title, detail))
+                
+                let distances = samples.compactMap { converter.convert(quantity: $0, unit: HKUnit.meter()) }
+                self.healthData.append(contentsOf: distances)
             }
             
             
@@ -133,7 +142,11 @@ class ActivityViewController: HealthKitBaseViewController {
                 let title = "\(sumQuantity.doubleValue(for: unit)) \(unit.unitString)"
                 let detail = "\(self.dateFormatter.string(from: statistic.startDate)) - \(self.dateFormatter.string(from: statistic.endDate))"
                 
+                
                 self.data.append((title, detail))
+                
+                let calories = converter.convert(startDate: statistic.startDate, endDate: statistic.endDate, quantity: sumQuantity, unit: unit)
+                self.healthData.append(calories)
             }
             
             
@@ -141,6 +154,40 @@ class ActivityViewController: HealthKitBaseViewController {
         }
     }
 
+    override func exportData() {
+        guard healthData.isEmpty == false else {
+            print("No Data")
+            return
+        }
+        let file = "activity.json"
+        var dir: URL
+        if #available(iOS 10.0, *) {
+            dir = FileManager.default.temporaryDirectory
+        } else {
+            // Fallback on earlier versions
+            dir = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+        }
+        let fileURL = dir.appendingPathComponent(file)
+        if FileManager().fileExists(atPath: fileURL.absoluteString) {
+            let ac = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+            present(ac, animated: true, completion: nil)
+            return
+        }
+        
+        let json = healthData.compactMap{ $0.toJSON() }
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
+            
+            //writing
+            try jsonData.write(to: fileURL, options: .atomicWrite)
+            
+            let ac = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+            present(ac, animated: true, completion: nil)
+            
+        } catch (let error) {
+            print("Error: \(error.localizedDescription)")
+        }
+    }
 }
 
 extension ActivityViewController: UITableViewDataSource {

@@ -23,7 +23,7 @@
 		91C80C4520893F2F00013140 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91C80C4320893F2F00013140 /* LaunchScreen.storyboard */; };
 		91C80C5120894AB700013140 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91C80C5020894AB700013140 /* HealthKit.framework */; };
 		91FCDC3E209A3CBA00CF3762 /* CommonHealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FCDC3D209A3CBA00CF3762 /* CommonHealthData.swift */; };
-		91FCDC40209A419500CF3762 /* HealthAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FCDC3F209A419500CF3762 /* HealthAdapter.swift */; };
+		91FCDC40209A419500CF3762 /* HealthConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FCDC3F209A419500CF3762 /* HealthConverter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +47,7 @@
 		91C80C4F20894A2500013140 /* HealthKitStudy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthKitStudy.entitlements; sourceTree = "<group>"; };
 		91C80C5020894AB700013140 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		91FCDC3D209A3CBA00CF3762 /* CommonHealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonHealthData.swift; sourceTree = "<group>"; };
-		91FCDC3F209A419500CF3762 /* HealthAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAdapter.swift; sourceTree = "<group>"; };
+		91FCDC3F209A419500CF3762 /* HealthConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthConverter.swift; sourceTree = "<group>"; };
 		E7C50E4E20A8C20BB6A2FCFE /* Pods-HealthKitStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HealthKitStudy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HealthKitStudy/Pods-HealthKitStudy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,7 +92,7 @@
 				91740F3E208FA11700A3D24A /* SleepingAnalysisViewController.swift */,
 				91740F46208FCC6A00A3D24A /* ActivityViewController.swift */,
 				91FCDC3D209A3CBA00CF3762 /* CommonHealthData.swift */,
-				91FCDC3F209A419500CF3762 /* HealthAdapter.swift */,
+				91FCDC3F209A419500CF3762 /* HealthConverter.swift */,
 				91740F44208FC2F600A3D24A /* SleepingAnalysisChartViewController.swift */,
 				915C9DB6209267FB00A9B5DD /* WorkoutsViewController.swift */,
 				915C9DB82092681500A9B5DD /* HealthKitBaseViewController.swift */,
@@ -251,7 +251,7 @@
 				915C9DB7209267FB00A9B5DD /* WorkoutsViewController.swift in Sources */,
 				91740F47208FCC6A00A3D24A /* ActivityViewController.swift in Sources */,
 				91740F45208FC2F600A3D24A /* SleepingAnalysisChartViewController.swift in Sources */,
-				91FCDC40209A419500CF3762 /* HealthAdapter.swift in Sources */,
+				91FCDC40209A419500CF3762 /* HealthConverter.swift in Sources */,
 				91C80C3920893F2D00013140 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

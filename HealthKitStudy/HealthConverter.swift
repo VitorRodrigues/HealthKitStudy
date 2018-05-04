@@ -12,12 +12,26 @@ import HealthKit
 class HealthConverter {
     
     func convert(quantity: HKQuantitySample, unit: HKUnit) -> CommonHealthData {
-        let value = quantity.quantity.doubleValue(for: unit)
+//        let value = quantity.quantity.doubleValue(for: unit)
+//        let unit = unit.unitString
+//        let data = QuantityHealthData(value: value, unit: unit)
+//        
+//        data.startDate = quantity.startDate
+//        data.endDate = quantity.endDate
+//        
+        return convert(startDate: quantity.startDate,
+                       endDate: quantity.endDate,
+                       quantity: quantity.quantity,
+                       unit: unit)
+    }
+    
+    func convert(startDate:Date, endDate: Date, quantity: HKQuantity, unit: HKUnit) -> CommonHealthData {
+        let value = quantity.doubleValue(for: unit)
         let unit = unit.unitString
         let data = QuantityHealthData(value: value, unit: unit)
         
-        data.startDate = quantity.startDate
-        data.endDate = quantity.endDate
+        data.startDate = startDate
+        data.endDate = endDate
         
         return data
     }
